@@ -10,14 +10,15 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 
 - React
 - React component libraries:
-  - @yudiel/react-qr-scanner
+  - Scan QR Code with camera: `@yudiel/react-qr-scanner`
+  - Generate QR code from string value: `react-qr-code`
 
 ### Routes
 
-- pocketpass.io - Home page
-- pocketpass.io/\<owner address\> - Shop page
-- pocketpass.io/check-in - Check-in page (qrcode reader), redirect to Home page `/` if not logged in
-- pocketpass.io/identity - Displays customer address into qrcode (for qrcode reader demo), redirect to Home page `/` if not logged in
+- `pocketpass.io` - Home page
+- `pocketpass.io/<owner address>` - Shop page
+- `pocketpass.io/check-in` - Check-in page (qrcode reader), redirect to Home page `/` if not logged in
+- `pocketpass.io/identity` - Displays customer address into qrcode (for qrcode reader demo), redirect to Home page `/` if not logged in
 
 ## Visual draft
 
