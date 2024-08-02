@@ -15,8 +15,8 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 ### Routes
 
 - pocketpass.io - Home page
-- pocketpass.io/<owner address> - Shop page
-- pocketpass.io/check-in/<owner address> - Check-in page (qrcode reader)
+- pocketpass.io/\<owner address\> - Shop page
+- pocketpass.io/check-in - Check-in page (qrcode reader), available if logged in, redirect to Home page `/`
 - pocketpass.io/identity - Displays customer address into qrcode (for qrcode reader demo)
 
 ## Visual draft
