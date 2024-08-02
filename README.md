@@ -8,4 +8,4 @@ brainstorming for now
 
 ## Visual draft
 
-![hackathon-idea](https://github.com/user-attachments/assets/d65ff268-6048-4c93-882e-159d83899697)
+![ethglobal-2024](https://github.com/user-attachments/assets/04ddf922-ba6e-4605-8b51-91ea55b5ae1d)
