@@ -8,4 +8,4 @@ brainstorming for now
 
 ## Visual draft
 
-![ethglobal-2024](https://github.com/user-attachments/assets/04ddf922-ba6e-4605-8b51-91ea55b5ae1d)
+![ethglobal-2024](https://github.com/user-attachments/assets/496fe846-0744-4106-bd5b-36ac0978d635)
