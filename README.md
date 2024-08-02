@@ -13,4 +13,5 @@ brainstorming for now
 ## Q&A
 
 > Where are the shop images?
+> 
 The image URL is part of the latest NFT metadata
