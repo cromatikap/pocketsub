@@ -2,8 +2,13 @@
 
 Project inspired by [ETH global superhack 2024](https://ethglobal.com/events/superhack2024). Brainstorming for now...
 
-## Requirements
+## Description
 
+No backend, no database, frontend middleware between browser and EVM chain network provider.
+
+### Requirements
+
+- React
 - React component libraries:
   - @yudiel/react-qr-scanner
 
