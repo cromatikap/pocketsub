@@ -21,7 +21,7 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 
 ## Visual draft
 
-![ethglobal-2024](https://github.com/user-attachments/assets/496fe846-0744-4106-bd5b-36ac0978d635)
+![ethglobal-2024](https://github.com/user-attachments/assets/54a964c7-0b58-46ff-ae57-46df37413af5)
 
 ## Q&A
 
