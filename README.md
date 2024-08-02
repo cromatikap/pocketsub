@@ -1,5 +1,6 @@
-# ethglobal-2024
-brainstorming for now
+# Pocket Pass
+
+Project inspired by [ETH global superhack 2024](https://ethglobal.com/events/superhack2024). Brainstorming for now...
 
 ## Requirements
 
