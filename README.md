@@ -4,7 +4,7 @@ Project inspired by [ETH global superhack 2024](https://ethglobal.com/events/sup
 
 ## Description
 
-No backend, no database, frontend middleware between browser and EVM chain network provider.
+Standalone on-chain subscriptions market app: the UI only acts as a middleware between browser and EVM chain network provider. No backend. 
 
 ### Requirements
 
