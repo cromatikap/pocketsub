@@ -29,4 +29,4 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 
 > Where are the shop images?
 > 
-The image URL is part of the latest NFT metadata
+The image URL is part of the latest NFT metadata of a given shop and subscription id
