@@ -21,7 +21,7 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 - `pocketpass.io/check-in/<owner address>` - Check-in page (qrcode reader), redirect to Home page `/` if not logged in
 - `pocketpass.io/identity/<owner address (opt)>` - Displays customer address into qrcode (for qrcode reader demo), redirect to Home page `/` if not logged in
 
-## Visual draft
+## Complete user flow
 
 ![ethglobal-2024](https://github.com/user-attachments/assets/aebecb1d-0548-4983-a531-0cb0612fed07)
 
