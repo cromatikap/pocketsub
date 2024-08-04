@@ -23,7 +23,7 @@ Standalone on-chain subscriptions market app: the UI only acts as a middleware b
 
 ## Complete user flow
 
-![ethglobal-2024](https://github.com/user-attachments/assets/161df8e1-0718-40b7-bfdf-1847fd65ec0d)
+![ethglobal-2024](https://github.com/user-attachments/assets/a52429b9-d83d-4ce0-a0ff-e33962000219)
 
 ## Q&A
 
