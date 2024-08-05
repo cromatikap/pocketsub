@@ -3,19 +3,19 @@ import { Button, HR } from "flowbite-react";
 
 const ShopsList = [
   {
-    name: "Ipal base of the world",
+    name: "Xtrem Fitness",
     address: "0xa",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed quam a dui tempor fringilla sed sed diam."
+    description: "State-of-the-art gym with modern equipment, personal trainers, and a variety of fitness classes to help you achieve your health goals."
   },
   {
-    name: "Ipal base of the world 1",
+    name: "CoolHub coworking",
     address: "0xb",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed quam a dui tempor fringilla sed sed diam."
+    description: "A vibrant coworking space offering high-speed internet, private offices, meeting rooms, and a collaborative environment for startups and freelancers."
   },
   {
-    name: "Ipal base of the world some large title here for test 2",
+    name: "BookLovers Club",
     address: "0xc",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed quam a dui tempor fringilla sed sed diam."
+    description: "Book club offering monthly book selections"
   }
 ];
 
@@ -23,10 +23,9 @@ export default function Home() {
   return (
     <>
       <h1>Pocket Sub</h1>
-      <h2>on-chain standalone subscription market</h2>
-      <Button fullSized>Create your shop</Button>
+      <h2>on-chain subscription market</h2>
+      <Button className="m-auto" size="xl" gradientMonochrome="lime">Create your shop</Button>
       <HR />
-      <h3>Browse our community</h3>
       <ul>
         {ShopsList.map((shop, index) => (
           <ShopCard params={shop} key={index} />

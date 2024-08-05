@@ -1,7 +1,7 @@
 import { Button, Card } from "flowbite-react";
 
 export default function ShopCard({ params }: { params: { name: string, description: string, address: string } }) {
-  return <Card className="max-w-sm">
+  return <Card className="max-w-sm m-4">
     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
       {params.name}
     </h5>
