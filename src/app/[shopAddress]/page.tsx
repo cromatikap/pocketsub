@@ -1,5 +1,9 @@
-export default function Page({ params }: { params: { shopAddress: string } }) {
+
+import UserInfo from '@/components/UserInfo';
+
+export default function Page() {
+
   return <>
-    Shop page, wallet address: {params.shopAddress}
-  </>
+    <UserInfo />
+  </>;
 }
