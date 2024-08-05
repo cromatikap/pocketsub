@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <h1>Pocket Sub</h1>
-      <h2 className="text-pretty">on-chain standalone subscription market</h2>
+      <h2>on-chain standalone subscription market</h2>
       <Button fullSized>Create your shop</Button>
       <HR />
       <h3>Browse our community</h3>
