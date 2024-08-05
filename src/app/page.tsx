@@ -21,15 +21,20 @@ export default function Home() {
   ];
   return (
     <>
-      <h1>Pocket Sub</h1>
-      <h2 className="text-center">on-chain standalone subscription market</h2>
+      <div className="mb-4 flex flex-col gap-4 text-center">
+        <h1>Pocket Sub</h1>
+        <h2 className="text-pretty">on-chain standalone subscription market</h2>
+      </div>
+      <div className="w-full mb-4">
+        <Button fullSized size="lg" >Create your shop</Button>
+      </div>
 
-      <Button fullSized>Create your shop</Button>
-
-      <h2>Browser our community</h2>
-      <ul className="space-y-1 w-full overflow-y-auto">
-        {ShopsList.map((shop) => (
-          <Card href="#">
+      <div className="mb-4">
+        <h2>Browser our community</h2>
+      </div>
+      <ul className="space-y-1 w-full overflow-y-auto rounded-lg">
+        {ShopsList.map((shop, index) => (
+          <Card href="#" key={index}>
             <h1 className="font-bold tracking-tight text-gray-900 dark:text-white truncate">
               {shop.name}
             </h1>
