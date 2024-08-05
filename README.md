@@ -1,5 +1,11 @@
 # Pocket Sub
 
+Made for [ETH global superhack 2024](https://ethglobal.com/events/superhack2024).
+
+## Description
+
+Standalone on-chain subscriptions market app: the UI acts as a middleware between browser and EVM chain network provider.
+
 [Documentation](./documentation.md)
 
 ---
