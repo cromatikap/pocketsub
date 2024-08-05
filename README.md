@@ -1,6 +1,6 @@
 # Pocket Sub
 
-Inspired by [ETH global superhack 2024](https://ethglobal.com/events/superhack2024).
+Made for [ETH global superhack 2024](https://ethglobal.com/events/superhack2024).
 
 ## Description
 
