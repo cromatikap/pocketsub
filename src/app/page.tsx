@@ -1,5 +1,5 @@
 import ShopCard from "@/components/ShopCard";
-import { Button } from "flowbite-react";
+import { Button, HR } from "flowbite-react";
 
 const ShopsList = [
   {
@@ -22,23 +22,16 @@ const ShopsList = [
 export default function Home() {
   return (
     <>
-      <div className="mb-4 flex flex-col gap-4 text-center">
-        <h1>Pocket Sub</h1>
-        <h2 className="text-pretty">on-chain standalone subscription market</h2>
-      </div>
-      <div className="w-full mb-4">
-        <Button fullSized size="lg" >Create your shop</Button>
-      </div>
-
-      <div className="mb-4">
-        <h2>Browser our community</h2>
-      </div>
+      <h1>Pocket Sub</h1>
+      <h2 className="text-pretty">on-chain standalone subscription market</h2>
+      <Button fullSized>Create your shop</Button>
+      <HR />
+      <h3>Browse our community</h3>
       <ul>
         {ShopsList.map((shop, index) => (
           <ShopCard params={shop} key={index} />
         ))}
       </ul>
-
     </>
   );
 
