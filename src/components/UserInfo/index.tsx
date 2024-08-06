@@ -3,9 +3,10 @@
 import { useWeb3Auth } from '@/components/Web3AuthProvider';
 import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
+import DropDown from './DropDown';
 
-export default function UserInfo() {
-  const { loggedIn, login, getAccounts, logout } = useWeb3Auth();
+const UserInfo = () => {
+  const { loggedIn, login, getAccounts } = useWeb3Auth();
 
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
 
@@ -17,11 +18,9 @@ export default function UserInfo() {
     }
   }, [loggedIn]);
 
-  return loggedIn 
-    ? <>
-        {walletAddress}
-        <Button onClick={logout}>Disconnect</Button>
-      </>
+  return loggedIn && walletAddress
+    ? <DropDown label={walletAddress} />
     : <Button onClick={login}>Connect</Button>
-
 }
+
+export default UserInfo;
