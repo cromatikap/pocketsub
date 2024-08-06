@@ -10,7 +10,7 @@ const DropDown: React.FC<{
   const { logout } = useWeb3Auth();
 
   return (
-    <Dropdown label={shrinkWalletAddress(props.label)} dismissOnClick={false}>
+    <Dropdown label={shrinkWalletAddress(props.label)} gradientMonochrome="lime" dismissOnClick={false}>
       <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
     </Dropdown>
   );

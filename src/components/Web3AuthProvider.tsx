@@ -35,7 +35,7 @@ const web3auth = new Web3Auth({
 
 web3auth.configureAdapter(new MetamaskAdapter({}));
 
-const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -78,6 +78,10 @@ const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const isConnected = (): boolean => {
+    return web3auth.connected;
+  }
+
   const getAccounts = async (): Promise<string[]> => {
     if (!provider) {
       throw new Error('Provider not initialized');
@@ -92,10 +96,8 @@ const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Web3AuthContext.Provider value={{ provider, loggedIn, login, logout, getAccounts }}>
+    <Web3AuthContext.Provider value={{ provider, loggedIn, login, logout, getAccounts, isConnected }}>
       {children}
     </Web3AuthContext.Provider>
   );
 };
-
-export { Web3AuthProvider };
