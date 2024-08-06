@@ -2,7 +2,10 @@
 
 import { GoCopy } from "react-icons/go";
 
-export default function PageTitle({ params }: { params: { title: string, walletAddress?: string } }) {
+const PageTitle: React.FC<{
+  title: string;
+  walletAddress?: string;
+}> = (props) => {
 
   const copyToClipboard = () => {
     alert("todo")
@@ -11,8 +14,8 @@ export default function PageTitle({ params }: { params: { title: string, walletA
   return (
     <div className="flex" onClick={copyToClipboard}>
       <div>
-        <div>{params.title}</div>
-        <div>{params.walletAddress}</div>
+        <div>{props.title}</div>
+        <div>{props.walletAddress}</div>
       </div>
       <div>
         <GoCopy size={24} />
@@ -20,3 +23,5 @@ export default function PageTitle({ params }: { params: { title: string, walletA
     </div>
   );
 }
+
+export default PageTitle;

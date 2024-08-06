@@ -4,7 +4,7 @@
 import { Footer as FooterFlowbite } from "flowbite-react";
 import { BsGithub, BsTwitter, BsTelegram } from "react-icons/bs";
 
-export function Footer() {
+const Footer = () => {
   return (
     <FooterFlowbite>
       <div className="w-full bg-gray-700 px-4 py-6 sm:flex sm:items-center sm:justify-between">
@@ -18,3 +18,5 @@ export function Footer() {
     </FooterFlowbite>
   );
 }
+
+export default Footer;

@@ -35,7 +35,7 @@ const web3auth = new Web3Auth({
 
 web3auth.configureAdapter(new MetamaskAdapter({}));
 
-export const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -97,3 +97,5 @@ export const Web3AuthProvider = ({ children }: { children: React.ReactNode }) =>
     </Web3AuthContext.Provider>
   );
 };
+
+export { Web3AuthProvider };

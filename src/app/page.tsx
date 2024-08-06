@@ -19,7 +19,7 @@ const ShopsList = [
   }
 ];
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <h1>Pocket Sub</h1>
@@ -28,10 +28,11 @@ export default function Home() {
       <HR />
       <div className="flex flex-wrap justify-evenly">
         {ShopsList.map((shop, index) => (
-          <ShopCard params={shop} key={index} />
+          <ShopCard data={shop} key={index} />
         ))}
       </div>
     </>
   );
-
 }
+
+export default Home;

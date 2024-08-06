@@ -1,14 +1,14 @@
 import { Button, Card } from "flowbite-react";
 
-export default function ShopCard({ params }: { params: { name: string, description: string, address: string } }) {
+const ShopCard = ({ data }: { data: { name: string, description: string, address: string } }) => {
   return <Card className="max-w-sm m-4">
     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-      {params.name}
+      {data.name}
     </h5>
     <p className="font-normal text-gray-700 dark:text-gray-400">
-      {params.description}
+      {data.description}
     </p>
-    <Button href={params.address}>
+    <Button href={data.address}>
       Pricing
       <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -20,3 +20,5 @@ export default function ShopCard({ params }: { params: { name: string, descripti
     </Button>
   </Card>
 }
+
+export default ShopCard;
