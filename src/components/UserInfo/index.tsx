@@ -20,7 +20,7 @@ const UserInfo = () => {
 
   return loggedIn && walletAddress
     ? <DropDown label={walletAddress} />
-    : <Button onClick={login}>Connect</Button>
+    : <Button gradientMonochrome="lime" onClick={login}>Connect</Button>
 }
 
 export default UserInfo;
