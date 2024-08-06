@@ -1,7 +1,17 @@
+import BackButton from "@/components/BackButton";
+import PageTitle from "@/components/PageTitle";
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
+
   return(
-    <>Check-in page, shop address: {params.shopAddress}</>
+    <>
+    <PageTitle title="Check-in" walletAddress={params.shopAddress} />
+    Check-in page, shop address: {params.shopAddress}
+    <div>
+      <BackButton href='/shopAddress' name='Back to shop'/>
+    </div>
+   
+    </>
   );
 }
 
