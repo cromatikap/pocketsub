@@ -8,10 +8,10 @@ Standalone on-chain subscriptions market app: the UI acts as a middleware betwee
 
 ### Routes
 
-- `pocketpass.io` - Home page
-- `pocketpass.io/<owner address>` - Shop page
-- `pocketpass.io/check-in/<owner address>` - Check-in page (qrcode reader), redirect to Home page `/` if not logged in
-- `pocketpass.io/identity/<owner address (opt)>` - Displays customer address into qrcode (for qrcode reader demo), redirect to Home page `/` if not logged in
+- `pocketsub.io` - Home page
+- `pocketsub.io/<owner address>` - Shop page
+- `pocketsub.io/check-in/<owner address>` - Check-in page (qrcode reader), redirect to Home page `/` if not logged in
+- `pocketsub.io/identity/<owner address (opt)>` - Displays customer address into qrcode (for qrcode reader demo), redirect to Home page `/` if not logged in
 
 ## Complete user flow
 
