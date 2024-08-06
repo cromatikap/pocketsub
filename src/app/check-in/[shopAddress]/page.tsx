@@ -15,12 +15,8 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
       {/* back butto here */}
       <QRScanner onScan={(result) => setQRScannerResult(result)} />
 
-      <div className="text-center">
-        <div className="mb-2 block">
-          <Label htmlFor="walletAddress" value="WalletAddress" />
-        </div>
-        <TextInput id="walletAddress" type="text" sizing="md" value={JSON.stringify(qrscannerResult)} disabled />
-      </div>
+      <Label htmlFor="walletAddress" value="WalletAddress" />
+      <TextInput id="walletAddress" type="text" sizing="md" value={JSON.stringify(qrscannerResult)} />
     </>
   );
 }
