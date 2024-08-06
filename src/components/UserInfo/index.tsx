@@ -16,7 +16,7 @@ const UserInfo = () => {
         setWalletAddress(accounts[0]);
       });
     }
-  }, [loggedIn, getAccounts]);
+  }, [loggedIn]);
 
   return loggedIn && walletAddress
     ? <DropDown label={walletAddress} />
