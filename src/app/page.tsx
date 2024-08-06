@@ -26,11 +26,11 @@ export default function Home() {
       <h2>on-chain subscription market</h2>
       <Button className="m-auto" size="xl" gradientMonochrome="lime">Create your shop</Button>
       <HR />
-      <ul>
+      <div className="flex flex-wrap justify-evenly">
         {ShopsList.map((shop, index) => (
           <ShopCard params={shop} key={index} />
         ))}
-      </ul>
+      </div>
     </>
   );
 
