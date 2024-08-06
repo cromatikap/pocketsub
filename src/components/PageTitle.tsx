@@ -1,5 +1,5 @@
 "use client";
-
+import { shrinkWalletAddress } from "@/utils";
 import { GoCopy } from "react-icons/go";
 
 const PageTitle: React.FC<{
@@ -15,10 +15,10 @@ const PageTitle: React.FC<{
     <div className="flex" onClick={copyToClipboard}>
       <div>
         <div>{props.title}</div>
-        <div>{props.walletAddress}</div>
+        <div>{props.walletAddress && shrinkWalletAddress(props.walletAddress)}</div>
       </div>
       <div>
-        <GoCopy size={24} />
+        {props.walletAddress && (<GoCopy size={24} />)}
       </div>
     </div>
   );
