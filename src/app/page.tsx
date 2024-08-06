@@ -1,5 +1,8 @@
+"use client";
+
 import ShopCard from "@/components/ShopCard";
 import { Button, HR } from "flowbite-react";
+import Link from "next/link";
 
 const ShopsList = [
   {
@@ -24,7 +27,11 @@ const Home = () => {
     <>
       <h1>Pocket Sub</h1>
       <h2>on-chain subscription market</h2>
-      <Button className="m-auto" size="xl" gradientMonochrome="lime">Create your shop</Button>
+      <Link href="/shop">
+        <Button className="m-auto" size="xl" gradientMonochrome="lime">
+          Create your shop
+        </Button>
+      </Link>
       <HR />
       <div className="flex flex-wrap justify-evenly">
         {ShopsList.map((shop, index) => (

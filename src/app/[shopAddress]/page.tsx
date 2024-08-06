@@ -32,6 +32,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     const checkOwner = async () => {
       if (loggedIn) {
         const accounts = await getAccounts();
+        console.log("accounts", accounts)
         setIsOwner(accounts[0].toLowerCase() === params.shopAddress.toLowerCase());
       }
     }
