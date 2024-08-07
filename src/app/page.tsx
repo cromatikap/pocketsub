@@ -1,10 +1,13 @@
 "use client";
 
 import ShopCard from "@/components/ShopCard";
-import { useWeb3Auth } from "@/components/Web3AuthProvider";
 import { Button, HR } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Spinner } from "flowbite-react";
+
+import Web3AuthConnectorInstance from "@/components/Web3AuthConnectorInstance";
+import { useAccount, useConnect } from "wagmi";
+import { baseSepolia } from "wagmi/chains";
 
 const ShopsList = [
   {
@@ -25,30 +28,18 @@ const ShopsList = [
 ];
 
 const Home = () => {
-  const { loggedIn, getAccounts, login } = useWeb3Auth();
-  const [isLoading, setIsLoading] = useState(true);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
-
-  useEffect(() => {
-    const getWalletAddress = async () => {
-      if (loggedIn) {
-        const accounts = await getAccounts();
-        setWalletAddress(accounts[0]);
-      }
-      setIsLoading(false);
-    }
-
-    getWalletAddress();
-  }, [loggedIn]);
+  const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateShop = async () => {
-    if (!loggedIn){
-      await login();
-      const accounts = await getAccounts();
-      window.location.href = `/${accounts[0]}`;
+    if (!isConnected){
+      connect({connector: Web3AuthConnectorInstance([baseSepolia])});
+      if(isConnected)
+        window.location.href = `/${address}`;
     }
     else
-      window.location.href = `/${walletAddress}`;
+      window.location.href = `/${address}`;
   }
 
   return (

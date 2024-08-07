@@ -2,9 +2,11 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Web3Auth } from '@web3auth/modal';
-import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, IProvider } from '@web3auth/base';
+import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, IProvider, WALLET_ADAPTERS } from '@web3auth/base';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 import { MetamaskAdapter } from '@web3auth/metamask-adapter';
+import { Web3AuthConnector } from "@web3auth/web3auth-wagmi-connector";
+import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 
 const clientId = "BG5M9iC4rdpq6dRhLZVaSWBF_paF0V-0mL1IntPXa_5PO_Ama0u56E33MdukKSStBxajd-xxRydviLyM4BNkP3k";
 
@@ -29,11 +31,44 @@ const privateKeyProvider = new EthereumPrivateKeyProvider({
 
 const web3auth = new Web3Auth({
   clientId,
-  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
   privateKeyProvider,
+  uiConfig: {
+    appName: "Pocket Sub",
+    logoLight: "/logo.png",
+    logoDark: "/logo.png",
+    primaryButton: "externalLogin"
+  },
 });
 
+const walletServicesPlugin = new WalletServicesPlugin({
+  walletInitOptions: {
+    whiteLabel: {
+      showWidgetButton: true,
+    }
+  }
+});
+
+web3auth.addPlugin(walletServicesPlugin);
+
 web3auth.configureAdapter(new MetamaskAdapter({}));
+
+const modalConfig = {
+  [WALLET_ADAPTERS.OPENLOGIN]: {
+    label: "openlogin",
+    loginMethods: {
+      facebook: {
+        // it will hide the facebook option from the Web3Auth modal.
+        name: "facebook login",
+        showOnModal: false,
+      },
+    },
+    // setting it to false will hide all social login methods from modal.
+    showOnModal: true,
+  },
+}
+
+Web3AuthConnector(web3auth)
 
 export const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);

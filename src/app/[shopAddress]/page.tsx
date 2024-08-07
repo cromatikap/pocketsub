@@ -2,10 +2,13 @@
 
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
-import UserInfo from '@/components/UserInfo';
-import { useWeb3Auth } from '@/components/Web3AuthProvider';
-import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
+import { useAccount, useReadContract, useWriteContract } from 'wagmi';
+import dynamic from 'next/dynamic';
+const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
+const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
+import { CONTRACT_ADDRESS, abi } from "@/utils";
+import { Button } from 'flowbite-react';
 
 const SubscriptionsList = [
   {
@@ -26,30 +29,46 @@ const SubscriptionsList = [
 ];
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
-  const { loggedIn, getAccounts } = useWeb3Auth();
+  const { isConnected, address } = useAccount();
+  const { writeContract } = useWriteContract()
   const [isOwner, setIsOwner] = useState(false);
+
+  const result = useReadContract({
+    abi,
+    address: CONTRACT_ADDRESS,
+    functionName: "name"
+  });
+
+  console.log(result.data)
 
   useEffect(() => {
     const checkOwner = async () => {
-      if (loggedIn) {
-        const accounts = await getAccounts();
-        setIsOwner(accounts[0].toLowerCase() === params.shopAddress.toLowerCase());
+      if (isConnected && address) {
+        setIsOwner(isConnected && address && address.toLowerCase() === params.shopAddress.toLowerCase());
       }
+      else
+        setIsOwner(false);
     }
 
     checkOwner();
-  }, [loggedIn, params.shopAddress]);
+  }, [isConnected, address, params.shopAddress]);
+
+  const testWrite = () => {
+    writeContract({
+      abi,
+      address: CONTRACT_ADDRESS,
+      functionName: "setAccess",
+      args: ["resourceId", 15, 1]
+    });
+  }
 
   return <>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    {loggedIn && 
-      <Button gradientMonochrome="cyan" href={`/${isOwner ? "check-in" : "identity"}/${params.shopAddress}`} className='m-4' size="xl">
-        {isOwner ? "Check customer subscription" : "Check-in"}
-      </Button>
-    }
+    <Button onClick={testWrite}>dev test write contract</Button>
+    <CheckInButton shopAddress={params.shopAddress} />
     <div className="flex flex-wrap justify-evenly">
       {SubscriptionsList.map((sub, index) => (
         <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
