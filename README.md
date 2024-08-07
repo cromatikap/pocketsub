@@ -8,11 +8,13 @@ Made for [ETH global superhack 2024](https://ethglobal.com/events/superhack2024)
 
 Standalone on-chain subscriptions market app: the UI acts as a middleware between browser and EVM chain network provider.
 
-- Live demo (coming soon)
+- [Live demo](https://pocketsub.io)
 - [Docker image](https://hub.docker.com/r/l1toshareip/pocketsub)
 - [Documentation](./documentation.md)
 
 ---
+
+[![Continuous Delivery](https://github.com/cromatikap/pocketsub/actions/workflows/continuous-delivery.yml/badge.svg)](https://github.com/cromatikap/pocketsub/actions/workflows/continuous-delivery.yml)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
