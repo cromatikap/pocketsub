@@ -31,7 +31,7 @@ const SubscriptionsList = [
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
-  const { writeContract } = useWriteContract()
+  // const { writeContract } = useWriteContract()
   const [isOwner, setIsOwner] = useState(false);
 
   const result = useReadContract({
@@ -54,21 +54,21 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     checkOwner();
   }, [isConnected, address, params.shopAddress]);
 
-  const testWrite = () => {
-    writeContract({
-      abi,
-      address: CONTRACT_ADDRESS,
-      functionName: "setAccess",
-      args: ["resourceId", 15, 1]
-    });
-  }
+  // const testWrite = () => {
+  //   writeContract({
+  //     abi,
+  //     address: CONTRACT_ADDRESS,
+  //     functionName: "setAccess",
+  //     args: ["resourceId", 15, 1]
+  //   });
+  // }
 
   return <>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    <Button onClick={testWrite}>dev test write contract</Button>
+    {/* <Button onClick={testWrite}>dev test write contract</Button> */}
     <CheckInButton shopAddress={params.shopAddress} />
     <div className="flex flex-wrap justify-evenly">
       {SubscriptionsList.map((sub, index) => (
