@@ -17,10 +17,6 @@ const chainConfig = {
   ticker: "ETH",
   tickerName: "ETH",
   logo: "https://images.toruswallet.io/base.svg",
-  uiConfig: {
-    appName: "Pocket Sub",
-    primaryButton: "externalLogin"
-  }
 };
 
 const Web3AuthContext = createContext<any>(null);
@@ -35,6 +31,12 @@ const web3auth = new Web3Auth({
   clientId,
   web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
   privateKeyProvider,
+  uiConfig: {
+    appName: "Pocket Sub",
+    logoLight: "/logo.png",
+    logoDark: "/logo.png",
+    primaryButton: "externalLogin"
+  }
 });
 
 web3auth.configureAdapter(new MetamaskAdapter({}));
