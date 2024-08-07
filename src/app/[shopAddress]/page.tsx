@@ -3,10 +3,11 @@
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import { useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useReadContract } from 'wagmi';
 import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
+import { CONTRACT_ADDRESS, abi } from "@/utils";
 
 const SubscriptionsList = [
   {
@@ -29,6 +30,14 @@ const SubscriptionsList = [
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
   const [isOwner, setIsOwner] = useState(false);
+
+  const result = useReadContract({
+    abi,
+    address: CONTRACT_ADDRESS,
+    functionName: "name"
+  });
+
+  console.log(result.data)
 
   useEffect(() => {
     const checkOwner = async () => {
