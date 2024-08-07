@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/components/BackButton";
 import PageTitle from "@/components/PageTitle";
 import QRScanner from "@/components/QRScanner";
 import { Label, TextInput } from "flowbite-react";
@@ -11,8 +12,8 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
 
   return (
     <>
-      <PageTitle title="Check-in page" walletAddress={params.shopAddress} />
-      {/* back butto here */}
+      <PageTitle title="Check-in" walletAddress={params.shopAddress} />
+      <BackButton href={`/${params.shopAddress}`} name='Back to shop'/>
       <QRScanner onScan={(result) => setQRScannerResult(result)} />
 
       <Label htmlFor="walletAddress" value="WalletAddress" />
