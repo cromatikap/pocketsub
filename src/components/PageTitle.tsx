@@ -1,5 +1,6 @@
 "use client";
 import { shrinkWalletAddress } from "@/utils";
+import { Badge } from "flowbite-react";
 import { GoCopy } from "react-icons/go";
 
 const PageTitle: React.FC<{
@@ -12,13 +13,15 @@ const PageTitle: React.FC<{
   }
 
   return (
-    <div className="flex" onClick={copyToClipboard}>
+    <div className="flex gap-2" onClick={copyToClipboard}>
       <div>
-        <div>{props.title}</div>
-        <div>{props.walletAddress && shrinkWalletAddress(props.walletAddress)}</div>
+        <div className="font-bold text-2xl">{props.title}</div>
+        <Badge color="success" size="xl">
+          {props.walletAddress && shrinkWalletAddress(props.walletAddress)}
+        </Badge>
       </div>
       <div>
-        {props.walletAddress && (<GoCopy size={24} />)}
+        {props.walletAddress && (<GoCopy size={28} />)}
       </div>
     </div>
   );
