@@ -12,17 +12,17 @@ import { baseSepolia } from "wagmi/chains";
 const ShopsList = [
   {
     name: "Xtrem Fitness",
-    address: "0xa",
+    address: "0xeEEe8f7922E99ce6CEd5Cb2DaEdA5FE80Df7C95e",
     description: "State-of-the-art gym with modern equipment, personal trainers, and a variety of fitness classes to help you achieve your health goals."
   },
   {
     name: "CoolHub coworking",
-    address: "0xb",
+    address: "0x90d87CfCeF0d8058BfDb2862C00B5525556253F2",
     description: "A vibrant coworking space offering high-speed internet, private offices, meeting rooms, and a collaborative environment for startups and freelancers."
   },
   {
     name: "BookLovers Club",
-    address: "0xc",
+    address: "0x746D791F5D5853894F6888cA735528Bb19DE1912",
     description: "Book club offering monthly book selections"
   }
 ];
