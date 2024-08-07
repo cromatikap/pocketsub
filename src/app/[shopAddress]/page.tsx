@@ -63,11 +63,11 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   }
 
   return <>
-    <Button onClick={testWrite}>test write contract</Button>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
+    <Button onClick={testWrite}>dev test write contract</Button>
     <CheckInButton shopAddress={params.shopAddress} />
     <div className="flex flex-wrap justify-evenly">
       {SubscriptionsList.map((sub, index) => (
