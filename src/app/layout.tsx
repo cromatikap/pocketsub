@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Web3AuthProvider } from "@/components/Web3AuthProvider";
-import Footer from "@/components/Footer";
+import ClientRoot from "./ClientRoot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Web3AuthProvider>
-          <main className="flex min-h-screen flex-col justify-between">
-            <div>
-              {children}
-            </div>
-            <Footer />
-          </main>
-        </Web3AuthProvider>
+      <main className="flex min-h-screen flex-col justify-between">
+          <ClientRoot>
+            {children}
+          </ClientRoot>
+        </main>
       </body>
     </html>
   );

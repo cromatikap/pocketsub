@@ -1,10 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Web3Auth } from '@web3auth/modal';
-import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, IProvider } from '@web3auth/base';
-import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
+import { Web3AuthConnector } from "@web3auth/web3auth-wagmi-connector";
+import { Web3Auth } from "@web3auth/modal";
+import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
+import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, WALLET_ADAPTERS } from "@web3auth/base";
+import { Chain } from "wagmi/chains";
 import { MetamaskAdapter } from '@web3auth/metamask-adapter';
+import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 
 const clientId = "BG5M9iC4rdpq6dRhLZVaSWBF_paF0V-0mL1IntPXa_5PO_Ama0u56E33MdukKSStBxajd-xxRydviLyM4BNkP3k";
 
@@ -19,91 +21,48 @@ const chainConfig = {
   logo: "https://images.toruswallet.io/base.svg",
 };
 
-const Web3AuthContext = createContext<any>(null);
+export const Web3AuthProvider = (chains: Chain[]) => {
+  const privateKeyProvider = new EthereumPrivateKeyProvider({
+    config: { chainConfig },
+  });
 
-export const useWeb3Auth = () => useContext(Web3AuthContext);
+  const web3AuthInstance = new Web3Auth({
+    clientId,
+    chainConfig,
+    privateKeyProvider,
+    uiConfig: {
+      appName: "Pocket Sub",
+      logoLight: "/logo.png",
+      logoDark: "/logo.png",
+      primaryButton: "externalLogin"
+    },
+    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+    enableLogging: true,
+  });
 
-const privateKeyProvider = new EthereumPrivateKeyProvider({
-  config: { chainConfig },
-});
+  web3AuthInstance.configureAdapter(new MetamaskAdapter({}));
 
-const web3auth = new Web3Auth({
-  clientId,
-  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
-  privateKeyProvider,
-  uiConfig: {
-    appName: "Pocket Sub",
-    logoLight: "/logo.png",
-    logoDark: "/logo.png",
-    primaryButton: "externalLogin"
-  }
-});
-
-web3auth.configureAdapter(new MetamaskAdapter({}));
-
-export const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [provider, setProvider] = useState<IProvider | null>(null);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const init = async () => {
-      try {
-        await web3auth.initModal();
-        setProvider(web3auth.provider);
-
-        if (web3auth.connected) {
-          setLoggedIn(true);
-        }
-      } catch (error) {
-        console.error(error);
+  const walletServicesPlugin = new WalletServicesPlugin({
+    walletInitOptions: {
+      whiteLabel: {
+        showWidgetButton: true,
       }
-    };
-
-    init();
-  }, []);
-
-  const login = async () => {
-    try {
-      const web3authProvider = await web3auth.connect();
-      setProvider(web3authProvider);
-      if (web3auth.connected) {
-        setLoggedIn(true);
-      }
-    } catch (error) {
-      console.log("web3auth modal closed");
     }
-  };
+  });
+  web3AuthInstance.addPlugin(walletServicesPlugin);
 
-  const logout = async () => {
-    try {
-      await web3auth.logout();
-      setProvider(null);
-      setLoggedIn(false);
-    } catch (error) {
-      console.error("Failed to logout:", error);
-    }
-  };
-
-  const isConnected = (): boolean => {
-    return web3auth.connected;
+  const modalConfig = {
+    [WALLET_ADAPTERS.OPENLOGIN]: {
+      label: "openlogin",
+      // setting it to false will hide all social login methods from modal.
+      showOnModal: true,
+    },
   }
 
-  const getAccounts = async (): Promise<string[]> => {
-    if (!provider) {
-      throw new Error('Provider not initialized');
-    }
-    try {
-      const accounts = await provider.request({ method: 'eth_accounts' });
-      return accounts as string[];
-    } catch (error) {
-      console.error('Failed to get accounts:', error);
-      return [];
-    }
-  };
-
-  return (
-    <Web3AuthContext.Provider value={{ provider, loggedIn, login, logout, getAccounts, isConnected }}>
-      {children}
-    </Web3AuthContext.Provider>
-  );
+  return Web3AuthConnector({
+    web3AuthInstance,
+    modalConfig,
+  });
 };
+
+export default Web3AuthProvider;
