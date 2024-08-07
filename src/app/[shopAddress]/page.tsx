@@ -8,7 +8,8 @@ import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
 import { CONTRACT_ADDRESS, abi } from "@/utils";
-import { Button } from 'flowbite-react';
+import { Button, HR } from 'flowbite-react';
+import AddSubscriptionCard from '@/components/AddSubscriptionCard';
 
 const SubscriptionsList = [
   {
@@ -74,6 +75,8 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
         <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
       ))}
     </div>
+    <HR />
+    {isOwner && <AddSubscriptionCard />}
   </>
 }
 
