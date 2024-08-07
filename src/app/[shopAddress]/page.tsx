@@ -3,9 +3,9 @@
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import UserInfo from '@/components/UserInfo';
-import { useWeb3Auth } from '@/components/Web3AuthProvider';
 import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
 
 const SubscriptionsList = [
   {
@@ -26,30 +26,31 @@ const SubscriptionsList = [
 ];
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
-  const { loggedIn, getAccounts } = useWeb3Auth();
+  const { isConnected, address } = useAccount();
   const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
     const checkOwner = async () => {
-      if (loggedIn) {
-        const accounts = await getAccounts();
-        setIsOwner(accounts[0].toLowerCase() === params.shopAddress.toLowerCase());
+      if (isConnected && address) {
+        setIsOwner(isConnected && address && address.toLowerCase() === params.shopAddress.toLowerCase());
       }
+      else
+        setIsOwner(false);
     }
 
     checkOwner();
-  }, [loggedIn, params.shopAddress]);
+  }, [isConnected, address, params.shopAddress]);
 
   return <>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    {loggedIn && 
+    {/* {isConnected && 
       <Button gradientMonochrome="cyan" href={`/${isOwner ? "check-in" : "identity"}/${params.shopAddress}`} className='m-4' size="xl">
         {isOwner ? "Check customer subscription" : "Check-in"}
       </Button>
-    }
+    } */}
     <div className="flex flex-wrap justify-evenly">
       {SubscriptionsList.map((sub, index) => (
         <SubscriptionCard data={sub} isOwner={isOwner} key={index} />

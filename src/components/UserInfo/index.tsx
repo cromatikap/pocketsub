@@ -1,33 +1,19 @@
 "use client";
 
-import { useWeb3Auth } from '@/components/Web3AuthProvider';
+import Web3AuthConnectorInstance from '@/components/Web3AuthProvider';
 import { Button } from 'flowbite-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DropDown from './DropDown';
+import { useAccount, useConnect } from 'wagmi';
+import { baseSepolia } from 'wagmi/chains';
 
 const UserInfo = () => {
-  const { loggedIn, login, getAccounts } = useWeb3Auth();
+  const { isConnected, address } = useAccount();
+  const { connect } = useConnect();
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
-
-  useEffect(() => {
-    const getWalletAddress = async () => {
-      if (loggedIn) {
-        const accounts = await getAccounts();
-        setWalletAddress(accounts[0]);
-        setIsLoading(false);
-      }
-      else
-        setIsLoading(false);
-    };
-
-    getWalletAddress();
-  }, [loggedIn]);
-
-  return loggedIn && walletAddress
-    ? <DropDown label={walletAddress} />
-    : <Button gradientMonochrome="lime" onClick={login} disabled={isLoading}>Connect</Button>
+  return isConnected && address
+    ? <DropDown label={address} />
+    : <Button gradientMonochrome="lime" onClick={() => connect({connector: Web3AuthConnectorInstance([baseSepolia])})}>Connect</Button>
 }
 
 export default UserInfo;
