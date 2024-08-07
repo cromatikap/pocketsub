@@ -8,16 +8,25 @@ import { useState } from "react";
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
 
-  const [qrscannerResult, setQRScannerResult] = useState<any | null>(null);
+  const [qrscannerResult, setQRScannerResult] = useState<string>("");
+
+  const handleScan = (qrValue: any) => {
+    if (qrValue.length) {
+      const value = qrValue[0].rawValue;
+      setQRScannerResult(value);
+    }
+  };
 
   return (
     <>
       <PageTitle title="Check-in" walletAddress={params.shopAddress} />
       <BackButton href={`/${params.shopAddress}`} name='Back to shop'/>
-      <QRScanner onScan={(result) => setQRScannerResult(result)} />
-
+      
       <Label htmlFor="walletAddress" value="WalletAddress" />
-      <TextInput id="walletAddress" type="text" sizing="md" value={JSON.stringify(qrscannerResult)} />
+      <TextInput id="walletAddress" type="text" sizing="md" value={qrscannerResult} onChange={(e) => setQRScannerResult(e.target.value)} />
+      
+      <QRScanner onScan={handleScan} />
+      
     </>
   );
 }
