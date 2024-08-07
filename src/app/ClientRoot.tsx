@@ -3,7 +3,7 @@
 import "./globals.css";
 import Footer from "@/components/Footer";
 
-import Web3AuthConnectorInstance from "@/components/Web3AuthProvider";
+import Web3AuthConnectorInstance from "@/components/Web3AuthConnectorInstance";
 import { createConfig, http, useAccount, useConnect, WagmiProvider } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query' 

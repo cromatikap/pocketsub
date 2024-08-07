@@ -21,7 +21,7 @@ const chainConfig = {
   logo: "https://images.toruswallet.io/base.svg",
 };
 
-export const Web3AuthProvider = (chains: Chain[]) => {
+export const Web3AuthConnectorInstance = (chains: Chain[]) => {
   const privateKeyProvider = new EthereumPrivateKeyProvider({
     config: { chainConfig },
   });
@@ -36,7 +36,7 @@ export const Web3AuthProvider = (chains: Chain[]) => {
       logoDark: "/logo.png",
       primaryButton: "externalLogin"
     },
-    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
     enableLogging: true,
   });
 
@@ -65,4 +65,4 @@ export const Web3AuthProvider = (chains: Chain[]) => {
   });
 };
 
-export default Web3AuthProvider;
+export default Web3AuthConnectorInstance;
