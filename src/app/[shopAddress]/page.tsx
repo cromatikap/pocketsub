@@ -3,11 +3,12 @@
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import { useEffect, useState } from 'react';
-import { useAccount, useReadContract } from 'wagmi';
+import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
 import { CONTRACT_ADDRESS, abi } from "@/utils";
+import { Button } from 'flowbite-react';
 
 const SubscriptionsList = [
   {
@@ -29,6 +30,7 @@ const SubscriptionsList = [
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
+  const { writeContract } = useWriteContract()
   const [isOwner, setIsOwner] = useState(false);
 
   const result = useReadContract({
@@ -51,7 +53,17 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     checkOwner();
   }, [isConnected, address, params.shopAddress]);
 
+  const testWrite = () => {
+    writeContract({
+      abi,
+      address: CONTRACT_ADDRESS,
+      functionName: "setAccess",
+      args: ["resourceId", 15, 1]
+    });
+  }
+
   return <>
+    <Button onClick={testWrite}>test write contract</Button>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
