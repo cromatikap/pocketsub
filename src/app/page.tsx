@@ -5,7 +5,7 @@ import { Button, HR } from "flowbite-react";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
 
-import Web3AuthConnectorInstance from "@/components/Web3AuthProvider";
+import Web3AuthConnectorInstance from "@/components/Web3AuthConnectorInstance";
 import { useAccount, useConnect } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 

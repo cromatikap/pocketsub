@@ -1,8 +1,7 @@
 "use client";
 
-import Web3AuthConnectorInstance from '@/components/Web3AuthProvider';
+import Web3AuthConnectorInstance from '@/components/Web3AuthConnectorInstance';
 import { Button } from 'flowbite-react';
-import { useState } from 'react';
 import DropDown from './DropDown';
 import { useAccount, useConnect } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';

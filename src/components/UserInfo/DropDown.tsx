@@ -11,7 +11,7 @@ const DropDown: React.FC<{
 
   return (
     <Dropdown label={shrinkWalletAddress(props.label)} gradientMonochrome="lime" dismissOnClick={false}>
-      <Dropdown.Item onClick={disconnect}>Logout</Dropdown.Item>
+      <Dropdown.Item onClick={() => disconnect()}>Logout</Dropdown.Item>
     </Dropdown>
   );
 }

@@ -2,10 +2,11 @@
 
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
-import UserInfo from '@/components/UserInfo';
-import { Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
+import dynamic from 'next/dynamic';
+const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
+const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
 
 const SubscriptionsList = [
   {
@@ -46,11 +47,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
       <PageTitle title="Shop" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    {/* {isConnected && 
-      <Button gradientMonochrome="cyan" href={`/${isOwner ? "check-in" : "identity"}/${params.shopAddress}`} className='m-4' size="xl">
-        {isOwner ? "Check customer subscription" : "Check-in"}
-      </Button>
-    } */}
+    <CheckInButton shopAddress={params.shopAddress} />
     <div className="flex flex-wrap justify-evenly">
       {SubscriptionsList.map((sub, index) => (
         <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
