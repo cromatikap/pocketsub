@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { HiInformationCircle } from "react-icons/hi";
@@ -14,7 +13,7 @@ const QRScanner = ({ onScan }: { onScan: (result: any) => void; }) => {
 
     const checkCameraPermission = async () => {
       try {
-        const permissionStatus = await navigator.permissions.query({ name: 'camera' });
+        const permissionStatus = await navigator.permissions.query({ name: "camera" as PermissionName });
         handlePermissionChange(permissionStatus);
         permissionStatus.onchange = () => handlePermissionChange(permissionStatus);
       } catch {
