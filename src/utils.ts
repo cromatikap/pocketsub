@@ -1,3 +1,7 @@
+import contract from "@/pocketsub-contract.json";
+
+const { abi } = contract;
+
 const CONTRACT_ADDRESS = "0xccd89747Cbf7731E84Baa1C9f1Ec29922A8768D8";
 
 const shrinkWalletAddress = (walletAddress: string) => {
@@ -6,4 +10,4 @@ const shrinkWalletAddress = (walletAddress: string) => {
   return `${start}...${end}`;
 }
 
-export { CONTRACT_ADDRESS, shrinkWalletAddress };
+export { abi, CONTRACT_ADDRESS, shrinkWalletAddress };
