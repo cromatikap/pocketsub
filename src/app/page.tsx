@@ -2,7 +2,7 @@
 
 import ShopCard from "@/components/ShopCard";
 import { Button, HR } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 
 import Web3AuthConnectorInstance from "@/components/Web3AuthConnectorInstance";
@@ -31,16 +31,24 @@ const Home = () => {
   const { address, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   const [isLoading, setIsLoading] = useState(false);
+  const [redirectRequested, setRedirectRequested] = useState(false);
+  
+  useEffect(() => {
+    if (isConnected && redirectRequested) {
+      window.location.href = `/${address}`;
+    }
+  }, [isConnected, redirectRequested, address]);
+
 
   const handleCreateShop = async () => {
-    if (!isConnected){
-      connect({connector: Web3AuthConnectorInstance([baseSepolia])});
-      if(isConnected)
-        window.location.href = `/${address}`;
-    }
-    else
+    if (!isConnected) {
+      setIsLoading(true);
+      connect({ connector: Web3AuthConnectorInstance([baseSepolia]) });
+      setRedirectRequested(true);
+    } else {
       window.location.href = `/${address}`;
-  }
+    }
+  };
 
   return (
     <>
