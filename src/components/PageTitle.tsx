@@ -11,7 +11,7 @@ const PageTitle: React.FC<{
   const copyToClipboard = () => {
     if(props.title === "Check-in")
       navigator.clipboard.writeText("https://pocketsub.io/check-in/" + props.walletAddress);
-    else
+    else if(props.title === "Store")
       navigator.clipboard.writeText("https://pocketsub.io/" + props.walletAddress);
   }
 
