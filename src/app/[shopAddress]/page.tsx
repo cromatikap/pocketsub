@@ -65,7 +65,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
 
   return <>
     <div className="flex justify-between items-start p-2">
-      <PageTitle title="Shop" walletAddress={params.shopAddress} />
+      <PageTitle title="Store" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
     {/* <Button onClick={testWrite}>dev test write contract</Button> */}
