@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <>
       <h1>Pocket Sub</h1>
-      <h2>on-chain subscriptions market</h2>
+      <h2>Subscriptions marketplace</h2>
         <Button onClick={handleCreateShop} className="m-auto" size="xl" gradientMonochrome="lime">
           {isLoading ? <Spinner /> : <>Manage your store</>}
         </Button>
