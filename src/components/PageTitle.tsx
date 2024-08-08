@@ -16,7 +16,7 @@ const PageTitle: React.FC<{
     <div className="flex gap-2" onClick={copyToClipboard}>
       <div>
         <div className="font-bold text-2xl">{props.title}</div>
-        <Badge color="success" size="xl">
+        <Badge color="success" size="xl" className="font-mono">
           {props.walletAddress && shrinkWalletAddress(props.walletAddress)}
         </Badge>
       </div>

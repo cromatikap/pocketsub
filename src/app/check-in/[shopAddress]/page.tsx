@@ -20,8 +20,9 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   return (
     <>
       <PageTitle title="Check-in" walletAddress={params.shopAddress} />
-      <BackButton href={`/${params.shopAddress}`} name='Back to shop'/>
-      
+      <BackButton href={`/${params.shopAddress}`} name='Back to store'/>
+      <QRScanner onScan={(result) => setQRScannerResult(result)} />
+
       <Label htmlFor="walletAddress" value="WalletAddress" />
       <TextInput id="walletAddress" type="text" sizing="md" value={qrscannerResult} onChange={(e) => setQRScannerResult(e.target.value)} />
       
