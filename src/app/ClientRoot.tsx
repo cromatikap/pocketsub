@@ -24,7 +24,7 @@ const ClientRoot: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <div>
+        <div className="max-w-3xl mx-auto">
           {children}
         </div>
         <Footer />

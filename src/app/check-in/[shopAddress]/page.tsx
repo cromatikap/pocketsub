@@ -3,7 +3,7 @@
 import BackButton from "@/components/BackButton";
 import PageTitle from "@/components/PageTitle";
 import QRScanner from "@/components/QRScanner";
-import { Label, TextInput } from "flowbite-react";
+import { TextInput } from "flowbite-react";
 import { useState } from "react";
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
