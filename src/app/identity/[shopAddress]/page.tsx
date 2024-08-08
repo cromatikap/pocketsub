@@ -8,9 +8,7 @@ export default function Page({ params }: { params: { shopAddress: string } }) {
 
   return (
     <>
-      <div className="p-2">
-        <PageTitle title="Identity" />
-      </div>
+      <PageTitle title="Identity" />
       <BackButton href={`/${params.shopAddress}`} name='Back to store'/>
       <div className="flex flex-col gap-8 p-8 m-auto items-center">
         <QRCode value={userAddress} className="max-w-lg h-auto w-full" />
