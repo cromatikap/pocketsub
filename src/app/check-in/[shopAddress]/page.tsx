@@ -19,16 +19,14 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
 
   return (
     <>
-      <div className="p-2">
+      <div className="flex justify-between items-start p-2">
         <PageTitle title="Check-in" walletAddress={params.shopAddress} />
+        <BackButton href={`/${params.shopAddress}`} name='Back to store'/>
       </div>
-      <BackButton href={`/${params.shopAddress}`} name='Back to store'/>
-
-      <div className="flex flex-col gap-8 p-8 m-auto items-center">
-        <TextInput id="walletAddress" type="text"  value={qrscannerResult} onChange={(e) => setQRScannerResult(e.target.value)} />
+      <div className="flex flex-col gap-4 p-4 m-auto items-stretch">
+        <TextInput placeholder="wallet address" type="text" value={qrscannerResult} onChange={(e) => setQRScannerResult(e.target.value)} />
         <QRScanner onScan={handleScan} />
       </div>
-      
     </>
   );
 }
