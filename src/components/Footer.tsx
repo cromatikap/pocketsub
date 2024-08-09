@@ -11,7 +11,7 @@ const Footer = () => {
         <FooterFlowbite.Title title="made by Ipal team" />
         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
           <FooterFlowbite.Icon href="https://github.com/cromatikap/pocketsub" icon={BsGithub} />
-          <FooterFlowbite.Icon href="https://t.me/+uEUrIWNI7V4xYWIy" icon={BsTelegram} />
+          <FooterFlowbite.Icon href="https://t.me/LukkiinsightBTC" icon={BsTelegram} />
           <FooterFlowbite.Icon href="https://twitter.com/ipalNetwork" icon={BsTwitter} />
         </div>
       </div>
