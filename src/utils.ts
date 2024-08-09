@@ -10,4 +10,13 @@ const shrinkWalletAddress = (walletAddress: string) => {
   return `${start}...${end}`;
 }
 
-export { abi, CONTRACT_ADDRESS, shrinkWalletAddress };
+const processSubscriptions = (data: any) => {
+  return data.map((item: any) => ({
+    image_url: item.imageURL,
+    title: item.resourceId,
+    price: Number(item.price)
+  }));
+};
+
+
+export { abi, CONTRACT_ADDRESS, shrinkWalletAddress, processSubscriptions };

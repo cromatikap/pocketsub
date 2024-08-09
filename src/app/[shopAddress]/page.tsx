@@ -7,41 +7,36 @@ import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
-import { CONTRACT_ADDRESS, abi } from "@/utils";
+import { CONTRACT_ADDRESS, abi, processSubscriptions } from "@/utils";
 import { Button, HR } from 'flowbite-react';
 import AddSubscriptionCard from '@/components/AddSubscriptionCard';
 
-const SubscriptionsList = [
-  {
-    image_url: "https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder-700x700.png",
-    title: "Pass 1 day",
-    price: 9
-  },
-  {
-    image_url: "https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder-700x700.png",
-    title: "Pass 1 month",
-    price: 30
-  },
-  {
-    image_url: "https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder-700x700.png",
-    title: "Pass 12 day",
-    price: 300
-  },
-];
+interface SubscriptionProps {
+  image_url: string;
+  title: string;
+  price: number;
+}
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
   // const { writeContract } = useWriteContract()
   const [isOwner, setIsOwner] = useState(false);
+  const [subscriptions, setSubscriptions] = useState<SubscriptionProps[]>([]);
 
-  const result = useReadContract({
+  const { data, isLoading } = useReadContract({
     abi,
     address: CONTRACT_ADDRESS,
     functionName: "getShopSubscriptions",
     args: [params.shopAddress]
   });
 
-  console.log(result.data)
+  useEffect(() => {
+    if (data) {
+      const processedData = processSubscriptions(data);
+      setSubscriptions(processedData);
+    }
+
+  }, [data]);
 
   useEffect(() => {
     const checkOwner = async () => {
@@ -71,11 +66,13 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     </div>
     {/* <Button onClick={testWrite}>dev test write contract</Button> */}
     <CheckInButton shopAddress={params.shopAddress} />
-    <div className="flex flex-wrap justify-evenly">
-      {SubscriptionsList.map((sub, index) => (
-        <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
-      ))}
-    </div>
+    {isLoading ? (<p>Loading...</p>) : (
+      <div className="flex flex-wrap justify-evenly">
+        {subscriptions.map((sub, index) => (
+          <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
+        ))}
+      </div>
+    )}
     <HR />
     {isOwner && <AddSubscriptionCard />}
   </>
