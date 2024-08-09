@@ -2,7 +2,7 @@ import contract from "@/pocketsub-contract.json";
 
 const { abi } = contract;
 
-const CONTRACT_ADDRESS = "0xccd89747Cbf7731E84Baa1C9f1Ec29922A8768D8";
+const CONTRACT_ADDRESS = "0xE691973EC4eb9e8D0405ec9d15b4F26dd13A6633";
 
 const shrinkWalletAddress = (walletAddress: string) => {
   const start = walletAddress.slice(0, 6);

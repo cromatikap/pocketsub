@@ -37,7 +37,8 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   const result = useReadContract({
     abi,
     address: CONTRACT_ADDRESS,
-    functionName: "name"
+    functionName: "getShopSubscriptions",
+    args: [params.shopAddress]
   });
 
   console.log(result.data)
