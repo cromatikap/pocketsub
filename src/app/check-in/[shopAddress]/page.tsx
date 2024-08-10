@@ -14,8 +14,7 @@ import { toast } from "react-toastify";
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const [qrscannerResult, setQRScannerResult] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [openModal, setOpenModal] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleScan = (qrValue: any) => {
     if (qrValue.length) {
@@ -47,7 +46,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
 
   return (
     <>
-      {isLoading && <div className="flex items-center justify-center opacity-80 z-20 h-screen w-screen fixed bg-gray-400">
+      {isLoading && <div className="flex items-center justify-center opacity-80 z-20 h-screen w-screen left-0 fixed bg-gray-400">
         <Spinner size="xl" />
       </div>}
       <div className="flex justify-between items-start p-2">
