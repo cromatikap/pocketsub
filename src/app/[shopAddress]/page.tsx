@@ -19,7 +19,6 @@ interface SubscriptionProps {
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
-  // const { writeContract } = useWriteContract()
   const [isOwner, setIsOwner] = useState(false);
   const [subscriptions, setSubscriptions] = useState<SubscriptionProps[]>([]);
 
@@ -50,21 +49,11 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     checkOwner();
   }, [isConnected, address, params.shopAddress]);
 
-  // const testWrite = () => {
-  //   writeContract({
-  //     abi,
-  //     address: CONTRACT_ADDRESS,
-  //     functionName: "setAccess",
-  //     args: ["resourceId", 15, 1]
-  //   });
-  // }
-
   return <>
     <div className="flex justify-between items-start p-2">
       <PageTitle title="Store" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    {/* <Button onClick={testWrite}>dev test write contract</Button> */}
     <CheckInButton shopAddress={params.shopAddress} />
     {isLoading ? (<p>Loading...</p>) : (
       <div className="flex flex-wrap justify-evenly">
