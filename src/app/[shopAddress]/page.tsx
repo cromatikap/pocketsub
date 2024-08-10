@@ -11,6 +11,7 @@ import { CONTRACT_ADDRESS, abi, processSubscriptions } from "@/utils";
 import { Button, HR } from 'flowbite-react';
 import AddSubscriptionCard from '@/components/AddSubscriptionCard';
 import { getETHtoUSD } from '@/getETHtoUSD';
+import EmptyShop from '@/components/EmptyShop';
 
 interface SubscriptionProps {
   image_url: string;
@@ -22,7 +23,6 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
   const [isOwner, setIsOwner] = useState(false);
   const [subscriptions, setSubscriptions] = useState<SubscriptionProps[]>([]);
-  const [ethToUsdRate, setEthToUsdRate] = useState(0);
 
   const { data, isLoading } = useReadContract({
     abi,
@@ -59,13 +59,13 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
       <UserInfo />
     </div>
     <CheckInButton shopAddress={params.shopAddress} />
-    {isLoading ? (<p>Loading...</p>) : (
+    {isLoading ? (<p>Loading...</p>) : subscriptions.length > 0 ? (
       <div className="flex flex-wrap justify-evenly">
         {subscriptions.map((sub, index) => (
           <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
         ))}
       </div>
-    )}
+    ) : <EmptyShop />}
     <HR />
     {isOwner && <AddSubscriptionCard />}
   </>
