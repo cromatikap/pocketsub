@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const [qrscannerResult, setQRScannerResult] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleScan = (qrValue: any) => {
     if (qrValue.length) {
