@@ -1,4 +1,4 @@
-import contract from "@/pocketsub.json";
+import contract from "@/Pocketsub.json";
 import web3 from "web3";
 
 const { abi } = contract;
