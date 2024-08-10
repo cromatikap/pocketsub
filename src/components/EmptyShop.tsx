@@ -1,6 +1,6 @@
 const EmptyShop = () => {
-  return <div className="text-center text-lg">
-    This store has no available products yet.
+  return <div className="flex flex-col p-24 items-center justify-center">
+    No products found.
   </div>
 };
 
