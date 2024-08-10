@@ -1,10 +1,14 @@
+import { SubscriptionProps } from "@/types";
 import { abi, CONTRACT_ADDRESS } from "@/utils";
 import { Button, Card } from "flowbite-react";
 import { RiNftLine, RiDeleteBin2Line } from "react-icons/ri";
-import { useWriteContract } from "wagmi";
+import { useAccount, useWriteContract } from "wagmi";
 
-const SubscriptionCard = ({isOwner, data}: { isOwner: boolean, data: {image_url: string, title: string, price: number}}) => {
-  const { writeContract } = useWriteContract()
+const SubscriptionCard = ({isOwner, shopAddress, data}: { isOwner: boolean, shopAddress: string, data: SubscriptionProps}) => {
+  const { address } = useAccount();
+  const { writeContract } = useWriteContract();
+
+  console.log(data);
 
   const handleDelete = async () => {
     writeContract({
@@ -17,6 +21,20 @@ const SubscriptionCard = ({isOwner, data}: { isOwner: boolean, data: {image_url:
     });
   };
 
+  const handleMint = async () => {
+    writeContract({
+      abi,
+      address: CONTRACT_ADDRESS,
+      functionName: "mint",
+      args: [
+        shopAddress,
+        data.title,
+        address
+      ],
+      value: data.priceWEI
+    });
+  }
+
   return (
     <Card
       className="max-w-sm m-4"
@@ -28,14 +46,14 @@ const SubscriptionCard = ({isOwner, data}: { isOwner: boolean, data: {image_url:
       </h5>
       <div className="flex items-center justify-between">
         <span className="text-3xl font-bold text-gray-900 dark:text-white">
-          ${data.price}
+          ${data.priceUSD}
         </span>
         {isOwner
           ? <Button onClick={handleDelete} gradientMonochrome="pink" size="xl">
               <RiDeleteBin2Line onClick={handleDelete} className="mr-2 h-5 w-5" />
               Delete
             </Button>
-          : <Button size="sm" gradientMonochrome="cyan">
+          : <Button onClick={handleMint} size="sm" gradientMonochrome="cyan">
               <RiNftLine className="mr-2 h-5 w-5" />
               Mint subscription
             </Button>

@@ -12,12 +12,7 @@ import { Button, HR } from 'flowbite-react';
 import AddSubscriptionCard from '@/components/AddSubscriptionCard';
 import { getETHtoUSD } from '@/getETHtoUSD';
 import EmptyShop from '@/components/EmptyShop';
-
-interface SubscriptionProps {
-  image_url: string;
-  title: string;
-  price: number;
-}
+import { SubscriptionProps } from '@/types';
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
@@ -62,7 +57,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
     {isLoading ? (<p>Loading...</p>) : subscriptions.length > 0 ? (
       <div className="flex flex-wrap justify-evenly">
         {subscriptions.map((sub, index) => (
-          <SubscriptionCard data={sub} isOwner={isOwner} key={index} />
+          <SubscriptionCard data={sub} isOwner={isOwner} shopAddress={params.shopAddress} key={index} />
         ))}
       </div>
     ) : <EmptyShop />}
