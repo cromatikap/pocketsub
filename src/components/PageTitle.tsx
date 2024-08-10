@@ -1,7 +1,9 @@
 "use client";
+
 import { shrinkWalletAddress } from "@/utils";
 import { Badge } from "flowbite-react";
 import { GoCopy } from "react-icons/go";
+import { toast } from "react-toastify";
 
 const PageTitle: React.FC<{
   title: string;
@@ -13,10 +15,12 @@ const PageTitle: React.FC<{
       navigator.clipboard.writeText("https://pocketsub.io/check-in/" + props.walletAddress);
     else if(props.title === "Store")
       navigator.clipboard.writeText("https://pocketsub.io/" + props.walletAddress);
+  
+    toast("Link copied in your clipboard!");
   }
 
   return (
-    <div className="flex gap-2" onClick={copyToClipboard}>
+    <div id="page-title" className="flex gap-2" onClick={copyToClipboard}>
       <div>
         <div className="font-bold text-2xl">{props.title}</div>
         <Badge color="success" size="xl" className="font-mono">

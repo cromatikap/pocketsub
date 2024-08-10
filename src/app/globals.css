@@ -40,3 +40,14 @@ h3 {
   font-size: 1.25rem;
   padding-bottom: 1rem;
 }
+
+#page-title {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#page-title:hover {
+  cursor: pointer;
+  color: #06aecc;
+  box-shadow: 0 0 5px #22d3ee;
+}
