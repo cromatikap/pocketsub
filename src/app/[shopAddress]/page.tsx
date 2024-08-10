@@ -10,6 +10,7 @@ const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr:
 import { CONTRACT_ADDRESS, abi, processSubscriptions } from "@/utils";
 import { Button, HR } from 'flowbite-react';
 import AddSubscriptionCard from '@/components/AddSubscriptionCard';
+import { getETHtoUSD } from '@/getETHtoUSD';
 
 interface SubscriptionProps {
   image_url: string;
@@ -21,6 +22,7 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
   const [isOwner, setIsOwner] = useState(false);
   const [subscriptions, setSubscriptions] = useState<SubscriptionProps[]>([]);
+  const [ethToUsdRate, setEthToUsdRate] = useState(0);
 
   const { data, isLoading } = useReadContract({
     abi,
@@ -30,8 +32,10 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
   });
 
   useEffect(() => {
-    if (data) {
-      const processedData = processSubscriptions(data);
+    const ethToUsdRate = getETHtoUSD();
+
+    if (data && ethToUsdRate) {
+      const processedData = processSubscriptions(data, ethToUsdRate);
       setSubscriptions(processedData);
     }
 

@@ -1,4 +1,5 @@
 import contract from "@/pocketsub.json";
+import web3 from "web3";
 
 const { abi } = contract;
 
@@ -10,13 +11,18 @@ const shrinkWalletAddress = (walletAddress: string) => {
   return `${start}...${end}`;
 }
 
-const processSubscriptions = (data: any) => {
-  return data.map((item: any) => ({
-    image_url: item.imageURL,
-    title: item.resourceId,
-    price: Number(item.price)
-  }));
-};
+const processSubscriptions = (data: any, ethToUsdRate: number) => {
 
+  return data.map((item: any) => {
+    const priceETH = web3.utils.fromWei(item.price, "ether");
+    const price = (parseFloat(priceETH) * ethToUsdRate).toFixed(2);
+
+    return {
+      image_url: item.imageURL,
+      title: item.resourceId,
+      price: price
+    }
+  });
+};
 
 export { abi, CONTRACT_ADDRESS, shrinkWalletAddress, processSubscriptions };
