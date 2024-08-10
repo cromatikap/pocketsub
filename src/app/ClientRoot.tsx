@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 const queryClient = new QueryClient() 
 
-const config = createConfig({
+export const config = createConfig({
   chains: [baseSepolia],
   transports: {
     [baseSepolia.id]: http(),

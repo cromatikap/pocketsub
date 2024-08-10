@@ -3,7 +3,7 @@
 import PageTitle from '@/components/PageTitle';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import { useEffect, useState } from 'react';
-import { useAccount, useReadContract, useWriteContract } from 'wagmi';
+import { useAccount, useReadContract } from 'wagmi';
 import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
