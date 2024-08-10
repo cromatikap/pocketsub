@@ -23,7 +23,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-qr-code": "^2.0.15",
-    "wagmi": "^2.12.4"
+    "wagmi": "^2.12.4",
+    "web3": "^4.11.1"
   },
   "devDependencies": {
     "@types/node": "^20",

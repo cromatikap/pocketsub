@@ -1,8 +1,9 @@
-import contract from "@/pocketsub-contract.json";
+import contract from "@/pocketsub.json";
+import web3 from "web3";
 
 const { abi } = contract;
 
-const CONTRACT_ADDRESS = "0xE691973EC4eb9e8D0405ec9d15b4F26dd13A6633";
+const CONTRACT_ADDRESS = "0x78F120AA24493637fc6Be69C946F98AF1C84A528";
 
 const shrinkWalletAddress = (walletAddress: string) => {
   const start = walletAddress.slice(0, 6);
@@ -10,13 +11,19 @@ const shrinkWalletAddress = (walletAddress: string) => {
   return `${start}...${end}`;
 }
 
-const processSubscriptions = (data: any) => {
-  return data.map((item: any) => ({
-    image_url: item.imageURL,
-    title: item.resourceId,
-    price: Number(item.price)
-  }));
-};
+const processSubscriptions = (data: any, ethToUsdRate: number) => {
 
+  return data.map((item: any) => {
+    const priceETH = web3.utils.fromWei(item.price, "ether");
+    const priceUSD = (parseFloat(priceETH) * ethToUsdRate).toFixed(2);
+
+    return {
+      image_url: item.imageURL,
+      title: item.resourceId,
+      priceUSD: priceUSD,
+      priceWEI: item.price
+    }
+  });
+};
 
 export { abi, CONTRACT_ADDRESS, shrinkWalletAddress, processSubscriptions };
