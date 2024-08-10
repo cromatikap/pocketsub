@@ -8,11 +8,12 @@ import dynamic from 'next/dynamic';
 const UserInfo = dynamic(() => import('@/components/UserInfo'), { ssr: false });
 const CheckInButton = dynamic(() => import('@/components/CheckInButton'), { ssr: false });
 import { CONTRACT_ADDRESS, abi, processSubscriptions } from "@/utils";
-import { Button, HR } from 'flowbite-react';
+import { HR } from 'flowbite-react';
 import AddSubscriptionCard from '@/components/AddSubscriptionCard';
 import { getETHtoUSD } from '@/getETHtoUSD';
 import EmptyShop from '@/components/EmptyShop';
 import { SubscriptionProps } from '@/types';
+import LoadingSpinner from './LoadingSpinner';
 
 const Page = ({ params }: { params: { shopAddress: string } }) => {
   const { isConnected, address } = useAccount();
@@ -53,16 +54,22 @@ const Page = ({ params }: { params: { shopAddress: string } }) => {
       <PageTitle title="Store" walletAddress={params.shopAddress} />
       <UserInfo />
     </div>
-    <CheckInButton shopAddress={params.shopAddress} />
-    {isLoading ? (<p>Loading...</p>) : subscriptions.length > 0 ? (
-      <div className="flex flex-wrap justify-evenly">
-        {subscriptions.map((sub, index) => (
-          <SubscriptionCard data={sub} isOwner={isOwner} shopAddress={params.shopAddress} key={index} />
-        ))}
-      </div>
-    ) : <EmptyShop />}
-    <HR />
-    {isOwner && <AddSubscriptionCard />}
+    {isLoading
+      ? <LoadingSpinner /> 
+      : subscriptions.length > 0 
+      ? <>
+          <CheckInButton shopAddress={params.shopAddress} />
+          <div className="flex flex-wrap justify-evenly">
+            {subscriptions.map((sub, index) => (
+              <SubscriptionCard data={sub} isOwner={isOwner} shopAddress={params.shopAddress} key={index} />
+            ))}
+          </div>
+        </>
+      : <EmptyShop />}
+    {isOwner && <>
+        <HR />
+        <AddSubscriptionCard />
+      </>}
   </>
 }
 
