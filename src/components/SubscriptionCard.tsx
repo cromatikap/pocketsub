@@ -35,7 +35,7 @@ const SubscriptionCard = ({isOwner, data}: { isOwner: boolean, data: {image_url:
               <RiDeleteBin2Line onClick={handleDelete} className="mr-2 h-5 w-5" />
               Delete
             </Button>
-          : <Button size="xl" gradientMonochrome="cyan">
+          : <Button size="sm" gradientMonochrome="cyan">
               <RiNftLine className="mr-2 h-5 w-5" />
               Mint subscription
             </Button>
