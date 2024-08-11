@@ -3,7 +3,7 @@ import web3 from "web3";
 
 const { abi } = contract;
 
-const CONTRACT_ADDRESS = "0xD180d0697F533D921F28A92Aa1cdE775Bbff4B95";
+const CONTRACT_ADDRESS = "0x760022e8cf87953a171321e73c0bd28ad94eba99";
 
 const shrinkWalletAddress = (walletAddress: string) => {
   const start = walletAddress.slice(0, 6);
