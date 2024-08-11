@@ -10,12 +10,23 @@ import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 
 const clientId = "BG5M9iC4rdpq6dRhLZVaSWBF_paF0V-0mL1IntPXa_5PO_Ama0u56E33MdukKSStBxajd-xxRydviLyM4BNkP3k";
 
+// const chainConfig = {
+//   chainId: "0x14A34",
+//   rpcTarget: "https://sepolia.base.org",
+//   chainNamespace: CHAIN_NAMESPACES.EIP155,
+//   displayName: "Base Sepolia",
+//   blockExplorerUrl: "https://sepolia.basescan.org",
+//   ticker: "ETH",
+//   tickerName: "ETH",
+//   logo: "https://images.toruswallet.io/base.svg",
+// };
+
 const chainConfig = {
-  chainId: "0x14A34",
-  rpcTarget: "https://sepolia.base.org",
+  chainId: "0x2105", //8453
+  rpcTarget: "https://mainnet.base.org",
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  displayName: "Base Sepolia",
-  blockExplorerUrl: "https://sepolia.basescan.org",
+  displayName: "Base Mainnet",
+  blockExplorerUrl: "https://basescan.org",
   ticker: "ETH",
   tickerName: "ETH",
   logo: "https://images.toruswallet.io/base.svg",
