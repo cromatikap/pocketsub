@@ -15,7 +15,7 @@ const processSubscriptions = (data: any, ethToUsdRate: number) => {
 
   return data.map((item: any) => {
     const priceETH = web3.utils.fromWei(item.price, "ether");
-    const priceUSD = (parseFloat(priceETH) * ethToUsdRate).toFixed(2);
+    const priceUSD = (parseFloat(priceETH) * ethToUsdRate).toFixed(0);
 
     return {
       image_url: item.imageURL,
