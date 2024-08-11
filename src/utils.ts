@@ -5,6 +5,7 @@ const { abi } = contract;
 
 const CONTRACT_ADDRESS = "0xD180d0697F533D921F28A92Aa1cdE775Bbff4B95";
 
+
 const shrinkWalletAddress = (walletAddress: string) => {
   const start = walletAddress.slice(0, 6);
   const end = walletAddress.slice(-4);
