@@ -5,7 +5,7 @@
 Standalone NFT subscriptions marketplace.  
 Made for [ETH global superhack 2024](https://ethglobal.com/events/superhack2024).  
 
-### [Demo](https://pocketsub.io) | [Docker image](https://hub.docker.com/r/l1toshareip/pocketsub) | [Smart contract](https://github.com/cromatikap/pocketsub-contract) | [Documentation](./documentation.md)
+### [Demo](https://pocketsub.io) | [Docker image](https://hub.docker.com/r/l1toshareip/pocketsub) | [Smart contract](https://github.com/cromatikap/pocketsub-contract) | [Deployed contract](https://sepolia.basescan.org/address/0xd180d0697f533d921f28a92aa1cde775bbff4b95#code)
 
 ---
 
