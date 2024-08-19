@@ -3,7 +3,7 @@
 <img width="200" alt="Screenshot 2024-08-07 at 12 23 30" src="https://github.com/user-attachments/assets/8a7cceed-7953-4806-9d99-9206795980e3">
 
 Standalone NFT subscriptions marketplace.  
-Made for [ETH global superhack 2024](https://ethglobal.com/showcase/pocket-sub-wi8ee).  
+Made for [ETH global superhack 2024](https://ethglobal.com/showcase/pocket-sub-wi8ee) - 📩 291 projects - 🛠 1000 hackers - 🗺 82 countries - ⌚️ 24 timezones
 
 ### [Demo](https://pocketsub.io) | [Docker image](https://hub.docker.com/r/l1toshareip/pocketsub) | [Smart contract](https://github.com/cromatikap/pocketsub-contract) | [Deployed contract](https://sepolia.basescan.org/address/0xd180d0697f533d921f28a92aa1cde775bbff4b95#code)
 
